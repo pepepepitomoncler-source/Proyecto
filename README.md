@@ -21,7 +21,7 @@ Check&Fit es una aplicación web desarrollada que está orientada a dar a entren
 - **Despliegue:**
 
 ## 🎨 Diseño y Recursos Visuales
-PENDIENTE!!!
+![Check&Fit banner](DIAGRAMA.png)
 
 ## 💻 Ejemplos de la Aplicación
 HACER ESO CUANDO LA PAGINA YA ESTA HECHA!!
