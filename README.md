@@ -1,5 +1,5 @@
 # Check&Fit - Aplicación Web para Entrenadores Personales y Clubes Deportivos
-
+![Check&Fit banner](PROYECTO.png)
 ## 👥 Autor del Proyecto
 Daniel Galiana
 
