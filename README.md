@@ -14,10 +14,10 @@ Check&Fit es una aplicación web desarrollada que está orientada a dar a entren
 - Aplicar conocimientos adquiridos sobre desarrollo web full-stack.
 
 ## 🛠️ Tecnologías Utilizadas
-- **Frontend: React(porque permite crear interfaces web dinámicas y reutilizables de una forma organizada)**
-- **Backend: python, FastAPI(Python es un lenguaje que conocemos y FastAPI permite crear APIs de forma sencilla y rápida)**
-- **Base de Datos: Supabase(ofrece una base de datos PostgreSQL y herramientas para gestionarla fácilmente desde la aplicación)**
-- **Herramientas y Librerías:Git y GitHub(para controlar las versiones del proyecto)**
+- **Frontend: React (porque permite crear interfaces web dinámicas y reutilizables de una forma organizada)**
+- **Backend: python, FastAPI (Python es el lenguaje que conocemos y FastAPI permite crear APIs de forma sencilla y rápida)**
+- **Base de Datos: Supabase (ofrece una base de datos PostgreSQL y herramientas para gestionarla fácilmente desde la aplicación)**
+- **Herramientas y Librerías:Git y GitHub (para controlar las versiones del proyecto)**
 
 ## 🎨 Diseño y Recursos Visuales
 ![Check&Fit banner](DIAGRAMA.png)
