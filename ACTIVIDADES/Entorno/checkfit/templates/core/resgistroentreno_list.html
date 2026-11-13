@@ -1,0 +1,18 @@
+<!-- UD3.8.a-->
+{% extends 'common/base.html' %}
+
+{% block head_title %}Lista de registros de entreno{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Lista de registros de entreno</h2>
+<ul class="list-group mb-3">
+    {% for registroentreno in object_list %}
+    <li class="list-group-item">
+        <a href="{% url 'registroentreno_detail' pk=registroentreno.pk %}">{{ registroentreno }}</a>
+    </li>
+    {% empty %}
+    <li class="list-group-item">No hay registros de entreno.</li>
+    {% endfor %}
+</ul>
+{% include 'common/paginacion.html' %}
+{% endblock %}

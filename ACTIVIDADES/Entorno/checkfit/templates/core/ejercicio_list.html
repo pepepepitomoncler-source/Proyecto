@@ -1,0 +1,18 @@
+<!-- UD3.8.a-->
+{% extends 'common/base.html' %}
+
+{% block head_title %}Lista de ejercicios{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Lista de ejercicios</h2>
+<ul class="list-group mb-3">
+    {% for ejercicio in object_list %}
+    <li class="list-group-item">
+        <a href="{% url 'ejercicio_detail' pk=ejercicio.pk %}">{{ ejercicio }}</a>
+    </li>
+    {% empty %}
+    <li class="list-group-item">No hay ejercicios.</li>
+    {% endfor %}
+</ul>
+{% include 'common/paginacion.html' %}
+{% endblock %}

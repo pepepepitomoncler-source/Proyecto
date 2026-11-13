@@ -1,0 +1,15 @@
+<!-- UD3.8.a-->
+{% extends 'common/base.html' %}
+
+{% block head_title %}Detalle del entrenador{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Detalle del entrenador</h2>
+<dl class="row">
+    <dt class="col-sm-3">Usuario</dt><dd class="col-sm-9">{{ object.usuario }}</dd>
+    <dt class="col-sm-3">Especialidad</dt><dd class="col-sm-9">{{ object.especialidad }}</dd>
+    <dt class="col-sm-3">Años de experiencia</dt><dd class="col-sm-9">{{ object.experiencia }}</dd>
+    <dt class="col-sm-3">Descripción</dt><dd class="col-sm-9">{{ object.descripcion }}</dd>
+</dl>
+<a href="{% url 'entrenador_list' %}" class="btn btn-secondary">Volver a la lista</a>
+{% endblock %}

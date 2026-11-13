@@ -1,0 +1,18 @@
+<!-- UD3.8.a-->
+{% extends 'common/base.html' %}
+
+{% block head_title %}Lista de rutinas{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Lista de rutinas</h2>
+<ul class="list-group mb-3">
+    {% for rutina in object_list %}
+    <li class="list-group-item">
+        <a href="{% url 'rutina_detail' pk=rutina.pk %}">{{ rutina }}</a>
+    </li>
+    {% empty %}
+    <li class="list-group-item">No hay rutinas.</li>
+    {% endfor %}
+</ul>
+{% include 'common/paginacion.html' %}
+{% endblock %}

@@ -1,0 +1,18 @@
+<!-- UD3.8.a-->
+{% extends 'common/base.html' %}
+
+{% block head_title %}Lista de entrenadores{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Lista de entrenadores</h2>
+<ul class="list-group mb-3">
+    {% for entrenador in object_list %}
+    <li class="list-group-item">
+        <a href="{% url 'entrenador_detail' pk=entrenador.pk %}">{{ entrenador }}</a>
+    </li>
+    {% empty %}
+    <li class="list-group-item">No hay entrenadores.</li>
+    {% endfor %}
+</ul>
+{% include 'common/paginacion.html' %}
+{% endblock %}

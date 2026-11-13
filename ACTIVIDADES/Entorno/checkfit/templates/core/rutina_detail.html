@@ -1,0 +1,16 @@
+<!-- UD3.8.a-->
+{% extends 'common/base.html' %}
+
+{% block head_title %}Detalle de la rutina{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Detalle de la rutina</h2>
+<dl class="row">
+    <dt class="col-sm-3">Cliente</dt><dd class="col-sm-9">{{ object.cliente }}</dd>
+    <dt class="col-sm-3">Entrenador</dt><dd class="col-sm-9">{{ object.entrenador }}</dd>
+    <dt class="col-sm-3">Nombre</dt><dd class="col-sm-9">{{ object.nombre }}</dd>
+    <dt class="col-sm-3">Descripción</dt><dd class="col-sm-9">{{ object.descripcion }}</dd>
+    <dt class="col-sm-3">Fecha de creación</dt><dd class="col-sm-9">{{ object.fecha_creacion }}</dd>
+</dl>
+<a href="{% url 'rutina_list' %}" class="btn btn-secondary">Volver a la lista</a>
+{% endblock %}
