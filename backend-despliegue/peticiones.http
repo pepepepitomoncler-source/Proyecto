@@ -1,0 +1,32 @@
+### Saludo sin nombre
+GET http://localhost:8000/api/hello
+Accept: application/json
+
+### Saludo con nombre
+GET http://localhost:8000/api/hello?name=Ana
+Accept: application/json
+
+### Nombre vacío
+GET http://localhost:8000/api/hello?name=
+Accept: application/json
+
+### Nombre con espacios y tildes
+GET http://localhost:8000/api/hello?name=Ana%20Garc%C3%ADa
+Accept: application/json
+
+### CORS: origen permitido (debe devolver Access-Control-Allow-Origin)
+GET http://localhost:8000/api/hello
+Origin: http://localhost:5173
+
+### CORS: origen no permitido (200 pero SIN Access-Control-Allow-Origin)
+GET http://localhost:8000/api/hello
+Origin: http://web-maliciosa.com
+
+### CORS: preflight (debe devolver 204)
+OPTIONS http://localhost:8000/api/hello
+Origin: http://localhost:5173
+Access-Control-Request-Method: GET
+
+### Reto: nombre de más de 50 caracteres (debe devolver 422)
+GET http://localhost:8000/api/hello?name=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+Accept: application/json
