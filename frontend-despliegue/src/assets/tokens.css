@@ -1,0 +1,51 @@
+/* Design tokens de Check&Fit
+   Guía: Material Design 3, tema generado con la librería oficial de
+   Material Theme Builder a partir del verde del logo (#33D06D).
+   Valores tomados de DESIGN.md. */
+:root {
+  /* ===== Color (nombres que pide la actividad) ===== */
+  --color-primary: #336940;
+  --color-on-primary: #ffffff;
+  --color-surface: #f6fbf2;
+  --color-on-surface: #181d18;
+  --color-error: #ba1a1a;
+
+  /* ===== Color (roles M3 extra que usa DESIGN.md) ===== */
+  --color-primary-container: #b5f1bc;
+  --color-on-primary-container: #19512a;
+  --color-secondary: #506352;            /* anillo de foco */
+  --color-surface-container: #ebefe7;    /* cabecera y tarjetas neutras */
+  --color-on-surface-variant: #414941;   /* textos secundarios y etiquetas */
+  --color-outline: #717970;              /* borde de campos de texto */
+  --color-outline-variant: #c1c9be;      /* separadores */
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  /* ===== Tipografía (escala M3) ===== */
+  --font-family: 'Roboto', system-ui, sans-serif;
+  --font-size-title: 1.5rem;     /* Headline Small: 24px / 32px */
+  --line-height-title: 2rem;
+  --font-size-result: 1.375rem;  /* Title Large: 22px / 28px */
+  --font-size-body: 1rem;        /* Body Large: 16px / 24px */
+  --font-size-label: 0.875rem;   /* Label Large: 14px / 20px, peso 500 */
+  --font-size-small: 0.75rem;    /* Body Small: 12px / 16px */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* ===== Espaciado (rejilla de 4 dp) ===== */
+  --space-xs: 4px;
+  --space-s: 8px;
+  --space-m: 16px;
+  --space-l: 24px;
+  --space-xl: 32px;
+
+  /* ===== Forma (escala de forma M3) ===== */
+  --radius-xs: 4px;      /* campos de texto */
+  --radius-m: 12px;      /* tarjetas y avisos */
+  --radius-full: 9999px; /* botones e indicador de navegación */
+
+  /* ===== Estados (capas de estado M3) ===== */
+  --state-hover: 8%;
+  --state-pressed: 10%;
+}

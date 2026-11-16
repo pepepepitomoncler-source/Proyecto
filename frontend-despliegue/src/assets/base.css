@@ -1,0 +1,83 @@
+@import './tokens.css';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+  line-height: 1.5;
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+}
+
+h1 {
+  margin: 0 0 var(--space-s);
+  font-size: var(--font-size-title);
+  line-height: var(--line-height-title);
+  font-weight: var(--font-weight-regular);
+}
+
+p {
+  margin: 0 0 var(--space-m);
+}
+
+/* Accesibilidad: foco visible al navegar con teclado.
+   M3 usa un anillo de 3 px en el color secondary, separado 2 px. */
+:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* ===== Botón principal: Filled button de M3 (reutilizado por varias vistas) ===== */
+.btn-filled {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-s);
+  min-height: 40px;
+  padding: 10px var(--space-l);
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-family: inherit;
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-medium);
+  line-height: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Capa de estado (hover/pulsado) */
+.btn-filled::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-on-primary);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.btn-filled:hover::after {
+  opacity: var(--state-hover);
+}
+
+.btn-filled:active::after {
+  opacity: var(--state-pressed);
+}
+
+/* Deshabilitado según M3: fondo on-surface al 12 % y texto al 38 % */
+.btn-filled:disabled {
+  background: color-mix(in srgb, var(--color-on-surface) 12%, transparent);
+  color: color-mix(in srgb, var(--color-on-surface) 38%, transparent);
+  cursor: not-allowed;
+}
+
+.btn-filled:disabled::after {
+  display: none;
+}
