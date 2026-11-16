@@ -1,4 +1,4 @@
-# UD3.7.a
+# UD3.7.a - Vistas de la app core (Anexo III, Tabla 1)
 from django.views.generic import ListView, DetailView
 from .models import Usuario, Entrenador, Rutina, Ejercicio, RegistroEntreno
 

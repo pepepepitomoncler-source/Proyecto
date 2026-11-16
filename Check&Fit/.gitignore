@@ -1,0 +1,35 @@
+# ==========================================
+# GESTIÓN DE IGNORADOS (Entornos y temporales)
+# ==========================================
+
+# Entornos virtuales (todas las variantes posibles)
+.venv/
+/.venv/
+piapp-env/
+/piapp-env/
+piapp_venv/
+/piapp_venv/
+piapp_env/
+/piapp_env/
+venv/
+env/
+ENV/
+
+# Archivos de Python y caché
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Base de datos local de desarrollo
+db.sqlite3
+
+# Archivos multimedia y estáticos recolectados
+media/
+staticfiles/
+
+# Sistema y editores
+.DS_Store
+.vscode/
+.idea/
+*.log

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Check&amp;Fit · Boceto Hello World (Material Design 3)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ===== Design tokens (DESIGN.md · Material Design 3, semilla #33D06D) ===== */
+  :root {
+    --md-sys-color-primary: #336940;
+    --md-sys-color-on-primary: #FFFFFF;
+    --md-sys-color-primary-container: #B5F1BC;
+    --md-sys-color-on-primary-container: #19512A;
+    --md-sys-color-secondary: #506352;
+    --md-sys-color-surface: #F6FBF2;
+    --md-sys-color-surface-container: #EBEFE7;
+    --md-sys-color-on-surface: #181D18;
+    --md-sys-color-on-surface-variant: #414941;
+    --md-sys-color-outline: #717970;
+    --md-sys-color-outline-variant: #C1C9BE;
+    --md-sys-color-error: #BA1A1A;
+    --md-sys-color-error-container: #FFDAD6;
+    --md-sys-color-on-error-container: #93000A;
+
+    --font: 'Roboto', system-ui, sans-serif;
+    --headline-small: 400 24px/32px var(--font);
+    --title-large: 400 22px/28px var(--font);
+    --body-large: 400 16px/24px var(--font);
+    --body-medium: 400 14px/20px var(--font);
+    --body-small: 400 12px/16px var(--font);
+    --label-large: 500 14px/20px var(--font);
+
+    --space-s: 8px; --space-m: 16px; --space-l: 24px; --space-xl: 32px;
+    --shape-xs: 4px; --shape-m: 12px; --shape-full: 9999px;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--md-sys-color-surface); color: var(--md-sys-color-on-surface); font: var(--body-large); }
+  :focus-visible { outline: 3px solid var(--md-sys-color-secondary); outline-offset: 2px; }
+
+  /* ===== Top app bar ===== */
+  .app-bar { position: sticky; top: 0; z-index: 2; height: 64px; display: flex; align-items: center; justify-content: space-between;
+             padding: 0 var(--space-m); background: var(--md-sys-color-surface-container); }
+  .brand { display: flex; align-items: center; gap: var(--space-s); font: var(--title-large); font-weight: 500; color: var(--md-sys-color-on-surface); text-decoration: none; border-radius: var(--shape-xs); }
+  .brand-mark { width: 32px; height: 32px; border-radius: var(--shape-m); background: #000; display: grid; place-items: center; }
+  .brand .amp { color: var(--md-sys-color-primary); }
+  nav ul { list-style: none; display: flex; gap: var(--space-s); margin: 0; padding: 0; }
+  nav a { display: inline-flex; align-items: center; min-height: 48px; padding: 0 var(--space-m); border-radius: var(--shape-full);
+          font: var(--label-large); color: var(--md-sys-color-on-surface-variant); text-decoration: none; position: relative; }
+  nav a::before { content: ""; position: absolute; inset: 6px 0; border-radius: var(--shape-full); z-index: -1; }
+  nav a:hover::before { background: color-mix(in srgb, var(--md-sys-color-on-surface) 8%, transparent); }
+  nav a[aria-current="page"] { color: var(--md-sys-color-on-primary-container); }
+  nav a[aria-current="page"]::before { background: var(--md-sys-color-primary-container); }
+
+  /* ===== Layout ===== */
+  main { max-width: 640px; margin: 0 auto; padding: var(--space-l) var(--space-m) var(--space-xl); }
+  @media (min-width: 600px) { main { padding-inline: var(--space-l); } }
+  h1 { font: var(--headline-small); margin: 0 0 var(--space-s); }
+  h2 { font: var(--title-large); margin: var(--space-xl) 0 var(--space-m); }
+  h3 { font: var(--label-large); color: var(--md-sys-color-on-surface-variant); margin: 0 0 var(--space-s); text-transform: none; }
+  p { margin: 0 0 var(--space-m); }
+  .muted { color: var(--md-sys-color-on-surface-variant); font: var(--body-medium); }
+  [hidden] { display: none !important; }
+
+  /* ===== Filled button ===== */
+  .btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: var(--space-s);
+         min-height: 40px; padding: 10px 24px; border: 0; border-radius: var(--shape-full); cursor: pointer;
+         background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font: var(--label-large); text-decoration: none; }
+  .btn::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--md-sys-color-on-primary); opacity: 0; transition: opacity .15s; }
+  .btn:hover::after { opacity: .08; }
+  .btn:active::after { opacity: .10; }
+  .btn:disabled { background: color-mix(in srgb, var(--md-sys-color-on-surface) 12%, transparent);
+                  color: color-mix(in srgb, var(--md-sys-color-on-surface) 38%, transparent); cursor: not-allowed; }
+  .btn:disabled::after { display: none; }
+
+  /* ===== Outlined text field (etiqueta flotante) ===== */
+  .field { position: relative; margin-bottom: var(--space-m); }
+  .field input { width: 100%; height: 56px; padding: 16px; border: 1px solid var(--md-sys-color-outline); border-radius: var(--shape-xs);
+                 background: transparent; color: var(--md-sys-color-on-surface); font: var(--body-large); }
+  .field input:hover { border-color: var(--md-sys-color-on-surface); }
+  .field input:focus { outline: none; border: 2px solid var(--md-sys-color-primary); padding: 15px; }
+  .field label { position: absolute; left: 12px; top: 16px; padding: 0 4px; background: var(--md-sys-color-surface);
+                 color: var(--md-sys-color-on-surface-variant); font: var(--body-large); pointer-events: none; transition: all .15s; }
+  .field input:focus + label, .field input:not(:placeholder-shown) + label { top: -8px; font: var(--body-small); }
+  .field input:focus + label { color: var(--md-sys-color-primary); }
+  .field .support { display: block; padding: 4px 16px 0; font: var(--body-small); color: var(--md-sys-color-on-surface-variant); }
+
+  /* ===== Zona de resultado ===== */
+  .result { display: flex; align-items: center; gap: var(--space-m); min-height: 88px; padding: var(--space-m);
+            border-radius: var(--shape-m); background: var(--md-sys-color-surface-container); color: var(--md-sys-color-on-surface-variant); }
+  .result.success { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); font: var(--title-large); }
+  .result.error { background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); }
+  .result.error strong { display: block; font: var(--label-large); font-size: 16px; }
+  .result svg { flex: none; }
+
+  .spinner { width: 32px; height: 32px; flex: none; border-radius: 50%; border: 4px solid var(--md-sys-color-primary-container);
+             border-top-color: var(--md-sys-color-primary); animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .spinner { animation-duration: 3s; } }
+
+  /* ===== Catálogo de estados ===== */
+  .states { display: grid; gap: var(--space-m); }
+  @media (min-width: 600px) { .states { grid-template-columns: 1fr 1fr; } }
+  .divider { border: 0; border-top: 1px solid var(--md-sys-color-outline-variant); margin: var(--space-xl) 0 0; }
+  .hero { padding: var(--space-l); border-radius: var(--shape-m); background: var(--md-sys-color-surface-container); margin-bottom: var(--space-l); }
+  .demo-bar { display: flex; flex-wrap: wrap; gap: var(--space-s); align-items: center; margin-top: var(--space-m); }
+  .demo-bar label { font: var(--body-medium); color: var(--md-sys-color-on-surface-variant); display: inline-flex; gap: 6px; align-items: center; min-height: 48px; }
+</style>
+</head>
+<body>
+
+<header class="app-bar">
+  <a class="brand" href="#inicio" aria-label="Check&Fit, ir a Inicio">
+    <span class="brand-mark" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="#33D06D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+    <span>Check<span class="amp">&amp;</span>Fit</span>
+  </a>
+  <nav aria-label="Principal">
+    <ul>
+      <li><a href="#inicio" data-page="inicio">Inicio</a></li>
+      <li><a href="#hello" data-page="hello">Hello</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ===================== PÁGINA INICIO ===================== -->
+<main id="page-inicio">
+  <section class="hero">
+    <h1>Bienvenido a Check&amp;Fit</h1>
+    <p>Tu entrenador y tú, en la misma página. Esta es la primera pantalla del frontend: comprueba que la web habla con el backend.</p>
+    <a class="btn" href="#hello">Ir al saludo</a>
+  </section>
+  <p class="muted">Proyecto Intermodular · IES Severo Ochoa 2026/2027</p>
+</main>
+
+<!-- ===================== PÁGINA HELLO ===================== -->
+<main id="page-hello" hidden>
+  <h1>Hello</h1>
+  <p class="muted">Escribe tu nombre (o déjalo vacío) y pulsa «Saludar». El backend te responderá.</p>
+
+  <form id="hello-form" novalidate>
+    <div class="field">
+      <input id="nombre" name="nombre" type="text" placeholder=" " autocomplete="given-name" aria-describedby="nombre-help">
+      <label for="nombre">Nombre (opcional)</label>
+      <span class="support" id="nombre-help">Si lo dejas vacío verás «Hello World».</span>
+    </div>
+    <button class="btn" id="btn-saludar" type="submit">Saludar</button>
+
+    <div class="demo-bar">
+      <label><input type="checkbox" id="simular-error"> Simular fallo del backend (solo boceto)</label>
+    </div>
+  </form>
+
+  <h2 class="visually-section">Resultado</h2>
+  <div id="resultado" class="result" aria-live="polite">
+    <span>Aquí aparecerá el saludo.</span>
+  </div>
+
+  <hr class="divider">
+  <h2>Los cuatro estados de la zona de resultado</h2>
+  <div class="states">
+    <div>
+      <h3>1 · Inicial (vacío)</h3>
+      <div class="result"><span>Aquí aparecerá el saludo.</span></div>
+    </div>
+    <div>
+      <h3>2 · Cargando</h3>
+      <div class="result"><span class="spinner" role="progressbar" aria-label="Cargando"></span><span>Conectando…</span></div>
+    </div>
+    <div>
+      <h3>3 · Resultado correcto</h3>
+      <div class="result success"><span>Hello World Ana</span></div>
+    </div>
+    <div>
+      <h3>4 · Error</h3>
+      <div class="result error">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M12 7v6M12 16.5v.5" stroke="#FFDAD6" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <div><strong>No se ha podido contactar con el backend</strong><span>Inténtalo de nuevo en unos segundos.</span></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  // Navegación mínima por hash (en React será React Router)
+  function route() {
+    const page = location.hash === '#hello' ? 'hello' : 'inicio';
+    document.getElementById('page-inicio').hidden = page !== 'inicio';
+    document.getElementById('page-hello').hidden = page !== 'hello';
+    document.querySelectorAll('nav a').forEach(a =>
+      a.dataset.page === page ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
+  }
+  addEventListener('hashchange', route); route();
+
+  // Simulación de la llamada al backend para enseñar los estados
+  const form = document.getElementById('hello-form');
+  const out = document.getElementById('resultado');
+  const btn = document.getElementById('btn-saludar');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const nombre = document.getElementById('nombre').value.trim();
+    const falla = document.getElementById('simular-error').checked;
+    btn.disabled = true;
+    out.className = 'result';
+    out.removeAttribute('role');
+    out.innerHTML = '<span class="spinner" role="progressbar" aria-label="Cargando"></span><span>Conectando…</span>';
+    setTimeout(() => {
+      btn.disabled = false;
+      if (falla) {
+        out.className = 'result error';
+        out.setAttribute('role', 'alert');
+        out.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M12 7v6M12 16.5v.5" stroke="#FFDAD6" stroke-width="2.2" stroke-linecap="round"/></svg><div><strong>No se ha podido contactar con el backend</strong><span>Inténtalo de nuevo en unos segundos.</span></div>';
+      } else {
+        out.className = 'result success';
+        out.textContent = nombre ? 'Hello World ' + nombre : 'Hello World';
+      }
+    }, 1200);
+  });
+</script>
+</body>
+</html>
